@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Net8FlyoutTitleBug.FlyoutMenuPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Net8FlyoutTitleBug"
+    Title="Personal Organiser"
+    Padding="0,40,0,0"
+    IconImageSource="hamburger.png">
+    <CollectionView
+        x:Name="collectionView"
+        x:FieldModifier="public"
+        SelectionMode="Single">
+        <CollectionView.ItemsSource>
+            <x:Array Type="{x:Type local:FlyoutPageItem}">
+                <local:FlyoutPageItem
+                    Title="Contacts"
+                    IconSource="contacts.png"
+                    TargetType="{x:Type local:ContactsPage}" />
+                <local:FlyoutPageItem
+                    Title="TodoList"
+                    IconSource="todo.png"
+                    TargetType="{x:Type local:TodoListPage}" />
+            </x:Array>
+        </CollectionView.ItemsSource>
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Grid Padding="5,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image Source="{Binding IconSource}" />
+                    <Label
+                        Grid.Column="1"
+                        Margin="20,0"
+                        FontAttributes="Bold"
+                        FontSize="20"
+                        Text="{Binding Title}"
+                        VerticalOptions="Center" />
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>
